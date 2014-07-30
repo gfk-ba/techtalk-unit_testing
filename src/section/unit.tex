@@ -1,0 +1,44 @@
+\begin{frame}
+	\frametitle{What is a unit?}
+	\begin{block}{Unit}<+->
+		A unit is a collection of functions and variables that is \alert{self-contained}.
+	\end{block}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item A unit encompasses \alert{all functionality} working on a certain piece of state, \alert{and} \alert{all state} needed by that functionality. (I.e.: it is self-contained.)
+		\item So, no dependency on outside state!
+		\item A unit needs proper design to eliminate direct dependencies and allow for proper unit testing.
+		\begin{itemize}[<+-| highlight@+>]
+			\item For example, use the SOLID design principles as guidelines.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\only<+->{Candidate units:}
+	\begin{itemize}[<+-| highlight@+>]
+		\item Functions
+		\item Classes
+		\item Namespaces
+		\item Modules
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Find the unit to test...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/unit1.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Refactored to support unit testing...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/unit2.js}
+	\end{block}
+\end{frame}
+
+

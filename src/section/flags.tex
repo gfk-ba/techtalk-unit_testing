@@ -1,0 +1,56 @@
+\begin{frame}
+	\frametitle{Red flags, part 1}
+	\framesubtitle{Signs that something is wrong and action is required}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item It's hard to write unit tests for a unit.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Unit design issue.
+		\end{itemize}
+		\item Mocking/faking/spying of functions of the unit being tested.
+		\begin{itemize}[<+-| highlight@+>]
+			\item The test subject is modified to prove it works. Something's definitely wrong.
+			\item Unit design issue or error in unit test.
+		\end{itemize}
+		\item Non-public interface is being tested.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Probable cause: There is a separate unit hidden inside the unit being tested.
+		\end{itemize}
+		\item Unit depends on state outside of itself.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Either refactor the unit using dependency injection,
+			\item Or choose the bigger unit to write the unit tests against.
+		\end{itemize}
+		\item Inspecting the value of non-public properties.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Don't!
+			\item Just don't!
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Red flags, part 2}
+	\framesubtitle{Signs that something is wrong and action is required}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item Mocking/Faking instances not managed by the testing code.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Create abstraction of the instance class using interfaces.
+		\end{itemize}
+		\item Unit functions are tested individually, instead of combined.
+		\begin{itemize}[<+-| highlight@+>]
+			\item In case the functions don't operate on shared state: refactor the unit by splitting it up in smaller units.
+			\item Otherwise: probably non-public properties are inspected.
+			\item Write unit tests that test/demonstrate the behavior of (sequentially) invoking a combination of the unit's functions. Because this public behavior is the unit's contract with its clients and therefore \alert{should be tested}.
+		\end{itemize}
+		\item Changes in the unit source code are needed to support unit testing.
+		\begin{itemize}[<+-| highlight@+>]
+			\item Don't!
+			\item Probably non-public behavior is being tested.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+

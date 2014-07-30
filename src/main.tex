@@ -1,0 +1,77 @@
+\usepackage{listings}
+\usepackage{color}
+
+\lstdefinelanguage{Erlang}{
+	keywords={},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	basicstyle=\ttfamily\small,
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	morestring=[b]',
+	morestring=[b]"
+}
+
+
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	basicstyle=\ttfamily\tiny,
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	morestring=[b]',
+	morestring=[b]"
+}
+
+
+\lstset{numbers=left, frame=single}
+
+\input{theme}
+
+
+\title{Unit Testing}
+\author{Dave van Soest}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\frame{\tableofcontents}
+
+\section{Goal}
+\input{section/goal}
+
+\section{Definition: Unit}
+\input{section/unit}
+
+\section{Skipped topics}
+\input{section/skipped}
+
+\section{Taking over control}
+\input{section/control}
+
+\section{Faking, mocking, spying}
+\input{section/mocking}
+
+\section{Test only public interface}
+\input{section/public}
+
+\section{Red flags}
+\input{section/flags}
+
+\section[]{Questions \& Discussion}
+\sectionframe[src/images/questions.jpg]
+
+\end{document}
+

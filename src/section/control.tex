@@ -1,0 +1,24 @@
+\begin{frame}
+	\frametitle{Abstracting external depencies}
+
+	\only<+->{Abstract away everything that uses...}
+	\begin{itemize}[<+-| highlight@+>]
+		\item I/O (filesystem, network, ...)
+		\item interprocess communication
+		\item timers (time-outs, intervals)
+		\item runtime environment
+		\item undeterministic (random) behavior
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{How to abstract external depencies?}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item Use dependency injection.
+		\item Define an interface for the dependency.
+		\item Create a fake or mock implementation of the interface.
+	\end{itemize}
+\end{frame}
+

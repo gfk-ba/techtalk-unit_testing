@@ -1,0 +1,103 @@
+\begin{frame}
+	\frametitle{What to test? And what not?}
+
+	\begin{block}{What to test}<+->
+		\begin{itemize}[<+-| highlight@+>]
+			\item Public interface, public behavior.
+			\item External events. (They are part of the unit's contract.)
+			\item Extension points, in case the unit is a base class.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{What not to test}<+->
+		\begin{itemize}[<+-| highlight@+>]
+			\item Non-public interface, non-public behavior.
+			\begin{itemize}[<+-| highlight@+>]
+				\item Private methods.
+				\item Protected methods.
+				\item Internally scoped units.
+			\end{itemize}
+			\item Effects on non-public properties.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Why only test public interfaces?}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item Goal of the test is to prove that the unit adheres to its \alert{public} contract.
+		\item The rest of the program (if properly designed) does not depend on the inner workings of the unit.
+		\item Non-public functions/methods are not obliged to leave the unit in a valid state as a post-condition.
+		\item As long as the unit's public interface doesn't change, its internals are allowed to be turned 180 degrees around.
+		\item See unit testing benefits number 2, 4 and 5.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Why only test public interfaces?}
+	\framesubtitle{(continued...)}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item Non-public functions can not be treated as units. They rely on internals outside themselves, which might be subject to change.
+		\begin{itemize}[<+-| highlight@+>]
+			\item If a non-public function can be treated as a unit, there is no reason for it to be non-public.
+		\end{itemize}
+		\item A unit with complicated private functions probably has a hidden implicit internal class wanting to get out and which should be independently tested. The public functions are likely just facades.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{The Refactoring Experiment}
+
+	\begin{block}{}<+->
+		One of the big benefits of unit testing is being able to confidently refactor the implementation of a unit.
+	\end{block}
+
+	\begin{block}{}<+->
+		It should always be possible to arbitrarily refactor any internals of a unit, so that without modifying any of its unit tests, these tests still run successfully.
+	\end{block}
+
+	\begin{block}{}<+->
+		If not, then...
+		\begin{itemize}[<+-| highlight@+>]
+			\item the unit tests are written against non-public parts of the interface,
+			\item or the unit being tested is not an actual unit, i.e. it is not self-contained.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Unit being tested...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/public1.js}
+	\end{block}
+	\begin{block}{Unit test using non-public interface... (Wrong! But succeed.)}<+->
+		\lstinputlisting[language=Javascript]{section/examples/public1_test.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Unit after refactoring...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/public2.js}
+	\end{block}
+	\begin{block}{Original tests... (Fail!)}<+->
+		\lstinputlisting[language=Javascript]{section/examples/public1_test.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Correct unit tests on public interface, support refactoring...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/public2_test.js}
+	\end{block}
+\end{frame}
+
+

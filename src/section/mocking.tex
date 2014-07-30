@@ -1,0 +1,66 @@
+\begin{frame}
+	\frametitle{What is faking, mocking and spying?}
+
+	\begin{block}{Faking}<+->
+		A fake provides an empty (stubbed) implementation of an interface, returning predefined results.
+	\end{block}
+
+	\begin{block}{Mocking}<+->
+		A mock mimics functionality of a concrete implementation of an interface. It can potentially contain assertions.
+	\end{block}
+
+	\begin{block}{Spying}<+->
+		A spy is a wrapper around a function, capturing information about the function's invocations. E.g., invocation count and call arguments. It can assert correct behavior of the caller.
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{When to use faking, mocking and spying?}
+
+	\begin{itemize}[<+-| highlight@+>]
+		\item Fakes, mocks and spies are power tools. Use them judiciously. Prefer not to use them.
+		\item Prefer faking or mocking complete interfaces.
+		\item Only fake or mock methods of self-managed instances.
+		\item Only fake or mock public interfaces.
+		\item Use spying only for...
+		\begin{itemize}[<+-| highlight@+>]
+			\item events
+			\item callback functions
+			\item injected self-managed instances
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Unit has direct dependency on I/O functionality, yikes!}<+->
+		\lstinputlisting[language=Javascript]{section/examples/mocking1.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Now using dependency injection...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/mocking2.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{Even better, separated fs into multiple disjoint interfaces...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/mocking3.js}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Example}
+	\begin{block}{And this is the unit test...}<+->
+		\lstinputlisting[language=Javascript]{section/examples/mocking3_test.js}
+	\end{block}
+\end{frame}
+
